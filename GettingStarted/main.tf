@@ -8,3 +8,10 @@ resource "local_file" "pet" {
     filename = "./pets.txt"
     file_permission = "0700"
 }
+
+//Outputs a random pet name
+resource "random_pet" "my-pet" {
+    prefix = "Mrs"
+    separator = "."
+    length = "1"
+}
