@@ -9,6 +9,14 @@ resource "local_file" "pet" {
     file_permission = "0700"
     //Dependency if the reference expression isn't used
     //depends_on = [ random_pet.my-pet ]
+
+    lifecycle {
+    //Create resource before destroying when updating
+      create_before_destroy = true
+    //prevent_destroy = true
+    //ignore_changes = [ tags, file_permission ]
+    //ignore_changes = all
+    }
 }
 
 //Outputs a random pet name
