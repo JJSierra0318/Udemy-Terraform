@@ -5,13 +5,15 @@
 //Terraform destroy deletes the file
 resource "local_file" "pet" {
     content = "My favorite pet is ${random_pet.my-pet.id}\nAlso ${data.local_file.dog.content}"
-    filename = var.filename[count.index]
+    filename = each.value
     file_permission = "0700"
     //Dependency if the reference expression isn't used
     //depends_on = [ random_pet.my-pet ]
 
     //Cycle with filename.length iterations
-    count = length(var.filename)
+    //count = length(var.filename)
+    //Can only be used with maps or set, solves having to recreate every item when only one is updated
+    for_each = toset(var.filename)
 
     lifecycle {
     //Create resource before destroying when updating
