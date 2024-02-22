@@ -2,6 +2,16 @@
 //  parameters = "values"
 //}
 
+//Specify a version for provider
+terraform {
+  required_providers {
+    local = {
+        source = "hashicorp/local"
+        version = "> 1.4.0"
+    }
+  }
+}
+
 //Terraform destroy deletes the file
 resource "local_file" "pet" {
     content = "My favorite pet is ${random_pet.my-pet.id}\nAlso ${data.local_file.dog.content}"
