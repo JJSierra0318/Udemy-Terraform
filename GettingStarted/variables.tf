@@ -1,6 +1,10 @@
 variable "filename" {
-    type = string
-    default = "./pets.txt"
+    type = list(string)
+    default = [
+        "./pets.txt",
+        "./dogs.txt",
+        "./cats.txt"
+    ]
 }
 variable "separator" {
     type = string
